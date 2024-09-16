@@ -4,9 +4,9 @@
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 <!-- badges: end -->
 
-The *Wald distribution* (also known as the [inverse Gaussian distribution](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution)) is a [positively skewed](https://en.wikipedia.org/wiki/Skewness) [unimodal](https://en.wikipedia.org/wiki/Unimodality) distribution commonly used to model [response time data](https://en.wikipedia.org/wiki/Mental_chronometry) (Anders, Alario, & Van Maanen, 2016; Schwarz, 2001). Parameterised as a [single-boundary diffusion process](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution#Relationship_with_Brownian_motion), the Wald distribution allows for inference on the latent psychological mechanisms underlying observed data (Heathcote & Matzke, 2022; Matzke & Wagenmakers, 2009; Tillman, Van Zandt, & Logan, 2020).
+The **Wald distribution** (also known as the [inverse Gaussian distribution](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution)) is a [positively skewed](https://en.wikipedia.org/wiki/Skewness) [unimodal](https://en.wikipedia.org/wiki/Unimodality) distribution commonly used to model [response time data](https://en.wikipedia.org/wiki/Mental_chronometry) (Anders, Alario, & Van Maanen, 2016; Schwarz, 2001). Parameterised as a [single-boundary diffusion process](https://en.wikipedia.org/wiki/Inverse_Gaussian_distribution#Relationship_with_Brownian_motion), the Wald distribution allows for inference on the latent psychological mechanisms underlying observed data (Heathcote & Matzke, 2022; Matzke & Wagenmakers, 2009; Tillman, Van Zandt, & Logan, 2020).
 
-*Stan* is a state-of-the-art platform for statistical modeling, but it lacks native support for the Wald distribution. This repository provides *Stan implementations of the Wald distribution's probability functions*, including:
+**Stan** is a state-of-the-art platform for statistical modeling, but it lacks native support for the Wald distribution. This repository provides **Stan implementations of the Wald distribution's probability functions**, including:
 - Log probability density function (`wald_lpdf`)
 - Log cumulative distribution function (`wald_lcdf`)
 - Log complementary cumulative distribution function (`wald_lccdf`)
@@ -86,7 +86,7 @@ You should also [cite Stan](https://mc-stan.org/users/citations/) according to t
 
 ## License
 
-This repository is licensed under [GPL-2](https://choosealicense.com/licenses/gpl-2.0/) due to its derivation from the `statmod` R package, which was licensed under GPL-2 | [GPL-3](https://choosealicense.com/licenses/gpl-3.0/).
+This repository is licensed under [**GPL-2**](https://choosealicense.com/licenses/gpl-2.0/) due to its derivation from the `statmod` R package, which was licensed under GPL-2 | [GPL-3](https://choosealicense.com/licenses/gpl-3.0/).
 
 ## References
 
