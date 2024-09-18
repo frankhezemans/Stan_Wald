@@ -12,9 +12,9 @@ The **Wald distribution** (also known as the [inverse Gaussian distribution](htt
 - Log complementary cumulative distribution function (`wald_lccdf`)
 - Random deviate generator (`wald_rng`)
 
-These functions can be incorporated into any Stan model as [user-defined probability functions](https://mc-stan.org/docs/stan-users-guide/user-functions.html#user-defined-probability-functions). The functions comply with recent Stan language updates (September 2023[^1]) and are [clearly documented](https://mc-stan.org/docs/stan-users-guide/user-functions.html#documenting-functions.section).
+These functions can be incorporated into any Stan model as [user-defined probability functions](https://mc-stan.org/docs/stan-users-guide/user-functions.html#user-defined-probability-functions). The functions comply with recent Stan language updates[^1] and are [clearly documented](https://mc-stan.org/docs/stan-users-guide/user-functions.html#documenting-functions.section).
 
-[^1]: For details, see the [list of features](https://mc-stan.org/docs/reference-manual/removals.html) that were removed in Stan version 2.33.
+[^1]: For details, see the [list of features](https://mc-stan.org/docs/reference-manual/removals.html) that were removed in Stan version 2.33 (September 2023).
 
 ## Reference implementation
 
@@ -86,7 +86,7 @@ You should also [cite Stan](https://mc-stan.org/users/citations/) according to t
 
 ## License
 
-This repository is licensed under [**GPL-2**](https://choosealicense.com/licenses/gpl-2.0/) due to its derivation from the `statmod` R package, which was licensed under GPL-2 | [GPL-3](https://choosealicense.com/licenses/gpl-3.0/).
+This repository is licensed under [**GPL-2**](https://choosealicense.com/licenses/gpl-2.0/) due to its derivation from the `statmod` R package, which was licensed under GPL-2 | GPL-3.
 
 ## References
 
