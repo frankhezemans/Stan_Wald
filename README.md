@@ -1,6 +1,7 @@
 # Stan_Wald: Stan probability functions for the Wald distribution
 
 <!-- badges: start -->
+[![DOI](https://zenodo.org/badge/857019588.svg)](https://zenodo.org/doi/10.5281/zenodo.13789412)
 [![License: GPL v2](https://img.shields.io/badge/License-GPL_v2-blue.svg)](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 <!-- badges: end -->
 
@@ -67,7 +68,7 @@ The simplest solution is to manually edit the `wald.stan` file by adding `|` bef
 
 If you use this code in your work, please cite the repository:
 
-Hezemans, F.H. (2024). Stan_Wald: Stan probability functions for the Wald distribution (Version 1.0) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.13789412
+Hezemans, F. H. (2024). Stan_Wald: Stan probability functions for the Wald distribution (Version 1.0) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.13789412
 
 A BibTeX entry for LaTeX users is as follows:
 
