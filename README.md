@@ -68,7 +68,7 @@ The simplest solution is to manually edit the `wald.stan` file by adding `|` bef
 
 If you use this code in your work, please cite the repository:
 
-Hezemans, F. H. (2024). Stan_Wald: Stan probability functions for the Wald distribution (Version 1.0) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.13789412
+Hezemans, F. H. (2024). Stan_Wald: Stan probability functions for the Wald distribution (Version 1.0.0) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.13789412
 
 A BibTeX entry for LaTeX users is as follows:
 
