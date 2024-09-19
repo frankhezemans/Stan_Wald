@@ -67,12 +67,20 @@ The simplest solution is to manually edit the `wald.stan` file by adding `|` bef
 
 If you use this code in your work, please cite the repository:
 
-Hezemans (2024). TEXT HERE
+Hezemans, F.H. (2024). Stan_Wald: Stan probability functions for the Wald distribution (Version 1.0) [Computer software]. GitHub. https://doi.org/10.5281/zenodo.13789412
 
 A BibTeX entry for LaTeX users is as follows:
 
 ```
-TEXT HERE
+@software{hezemans2024stan_wald,
+  author = {Frank H. Hezemans},
+  title = {Stan\_Wald: Probability Functions for the Wald Distribution in Stan (v1.0.0)},
+  year = {2024},
+  url = {https://doi.org/10.5281/zenodo.13789413},
+  doi = {10.5281/zenodo.13789413},
+  version = {1.0.0},
+  publisher = {GitHub}
+}
 ```
 
 Please also consider citing the R package `statmod`:
