@@ -12,7 +12,7 @@ The **Wald distribution** (also known as the [inverse Gaussian distribution](htt
 - Log complementary cumulative distribution function (`wald_lccdf`)
 - Random deviate generator (`wald_rng`)
 
-These functions can be incorporated into any Stan model as [user-defined probability functions](https://mc-stan.org/docs/stan-users-guide/user-functions.html#user-defined-probability-functions). The functions comply with recent Stan language updates[^1] and are [clearly documented](https://mc-stan.org/docs/stan-users-guide/user-functions.html#documenting-functions.section).
+These functions can be incorporated into any Stan model as [user-defined probability functions](https://mc-stan.org/docs/stan-users-guide/user-functions.html#user-defined-probability-functions). The functions comply with recent Stan language updates[^1] and are clearly documented.
 
 [^1]: For details, see the [list of features](https://mc-stan.org/docs/reference-manual/removals.html) that were removed in Stan version 2.33 (September 2023).
 
@@ -20,7 +20,7 @@ These functions can be incorporated into any Stan model as [user-defined probabi
 
 These Stan functions are, for the most part, direct translations of R code released with the `statmod` package (Giner & Smyth, 2016), specifically the file [`invgauss.R`](https://github.com/cran/statmod/blob/f85e32011346fb75d2b967cf2aff1f2e01a10ba8/R/invgauss.R). Any changes relative to the `statmod` code were made for enhanced readability and to comply with the Stan language syntax.
 
-The `statmod` implementation was chosen as the reference point as it has been shown to be highly accurate for an extremely wide range of parameter values, and it robustly handles edge cases of parameter values that would produce undefined or non-finite probabilities (Giner & Smyth, 2016). In particular, `statmod`'s implementations of the Wald LCDF and LCCDF are significantly more accurate than other R implementations, which suffer from numerical problems such as [arithmetic under- or overflow](https://en.wikipedia.org/wiki/Integer_overflow) and [catastrophic cancellation](https://en.wikipedia.org/wiki/Catastrophic_cancellation).
+The `statmod` implementation was chosen as the reference point as it has been shown to be highly accurate for an extremely wide range of parameter values, and it robustly handles edge cases of parameter values that would produce undefined or non-finite probabilities (Giner & Smyth, 2016). In particular, `statmod`'s implementations of the Wald LCDF and LCCDF are significantly more accurate than other R implementations, which suffer from numerical problems such as [arithmetic under- or overflow](https://en.wikipedia.org/wiki/Integer_overflow) and [subtractive cancellation](https://en.wikipedia.org/wiki/Catastrophic_cancellation).
 
 ## Usage considerations
 
@@ -47,6 +47,14 @@ From the above identities, it becomes evident that one of _v_, _s_, or _B_ must 
 Unlike the probability functions in R, these Stan functions are not vectorised: they return a single probability value for a single given input value[^2]. Thus, a for-loop must be used to apply these functions to multiple data points. This should not affect performance significantly, as loops are optimised in Stan's C++ back-end, such that for-loops may actually perform similarly to vectorised code in practice (at least when _user-defined_ as opposed to _built-in_ probability functions are involved).
 
 [^2]: In Stan, user-defined functions may only be used as probability functions in distribution statements if they return a real (scalar) value as output. Thus, a vectorised probability function in Stan would return a single value (namely, the _summed_ log probability) for a given vector of input values.
+
+### Stan version
+
+The `wald_lcdf` and `wald_lccdf` functions include several evaluations of the log cumulative distribution function of the [standard normal distribution](https://mc-stan.org/docs/functions-reference/unbounded_continuous_distributions.html#standard-normal-distribution), `std_normal_lcdf`. This distribution is parameter-free, and only takes the input value (say, `x`) as an input argument (i.e., `std_normal_lcdf(x)`). However, there is an [issue](https://github.com/stan-dev/stanc3/issues/393) in older versions of Stan, where the compiler expects a vertical bar (`|`) after the first input argument of any probability function, even if that function doesn't have more than one input argument (as is the case for the `std_normal_` family). Thus, with older versions of Stan, you might encounter an error message like this:
+```
+Probability functions with suffixes _lpdf, _lupdf, _lpmf, _lupmf, _lcdf and _lccdf, require a vertical bar (|) between the first two arguments.
+```
+The simplest solution is to manually edit the `wald.stan` file by adding `|` before the closing bracket `)` of any call to `std_normal_lcdf`.
 
 ## Table of contents
 
