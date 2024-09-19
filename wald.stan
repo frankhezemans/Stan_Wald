@@ -444,8 +444,8 @@ functions {
       x_1 = 1 + (y_phi / 2) * (1 - sqrt(1 + (4 / y_phi)));
     }
 
-    unif_sample = uniform_rng(0, 1);
-    if (unif_sample < (1 / (1 + x_1))) {
+    unif_sim = uniform_rng(0, 1);
+    if (unif_sim < (1 / (1 + x_1))) {
       x_sim = mu * x_1;
     } else {
       x_sim = mu / x_1;
