@@ -51,11 +51,16 @@ Unlike the probability functions in R, these Stan functions are not vectorised: 
 
 ### Stan version
 
-The `wald_lcdf` and `wald_lccdf` functions include several evaluations of the log cumulative distribution function of the [standard normal distribution](https://mc-stan.org/docs/functions-reference/unbounded_continuous_distributions.html#standard-normal-distribution), `std_normal_lcdf`. This distribution is parameter-free, and only takes the input value (say, `x`) as an input argument (i.e., `std_normal_lcdf(x)`). However, there is an [issue](https://github.com/stan-dev/stanc3/issues/393) in older versions of Stan, where the compiler expects a vertical bar (`|`) after the first input argument of any probability function, even if that function doesn't have more than one input argument (as is the case for the `std_normal_` family). Thus, with older versions of Stan, you might encounter an error message like this:
+With older versions of Stan, you might see the following error when compiling `wald.stan`:
 ```
-Probability functions with suffixes _lpdf, _lupdf, _lpmf, _lupmf, _lcdf and _lccdf, require a vertical bar (|) between the first two arguments.
+Probability functions with suffixes _lpdf, _lupdf, _lpmf, _lupmf, _lcdf and _lccdf, require a vertical bar (|) between the first two arguments. 
 ```
-The simplest solution is to manually edit the `wald.stan` file by adding `|` before the closing bracket `)` of any call to `std_normal_lcdf`.
+This is due to an [issue](https://github.com/stan-dev/stanc3/issues/393) where the compiler expects a vertical bar (`|`) after the first argument in probability functions, even if they don't take a second argument. The functions `wald_lcdf` and `wald_lccdf` call the `std_normal_lcdf` function, which only takes one argument (e.g., `std_normal_lcdf(x)`).
+
+To fix this, manually edit the `wald.stan` file by adding a `|` before the closing parenthesis of each `std_normal_lcdf` call, like so:
+```
+std_normal_lcdf(x)  →  std_normal_lcdf(x |)
+```
 
 ## Table of contents
 
@@ -123,5 +128,7 @@ Heathcote, A., & Matzke, D. (2022). Winner takes all! What are race models, and 
 Matzke, D., & Wagenmakers, E. J. (2009). Psychological interpretation of the ex-Gaussian and shifted Wald parameters: A diffusion model analysis. _Psychonomic Bulletin & Review_, _16_, 798-817.
 
 Schwarz, W. (2001). The ex-wald distribution as a descriptive model of response times. _Behavior Research Methods, Instruments, & Computers_, _33_(4), 457–469.
+
+Van Maanen, L., & Miletić, S. (2021). The interpretation of behavior-model correlations in unidentified cognitive models. _Psychonomic Bulletin & Review_, _28_(2), 374-383.
 
 Tillman, G., Van Zandt, T., & Logan, G. D. (2020). Sequential sampling models without random between-trial variability: The racing diffusion model of speeded decision making. _Psychonomic Bulletin & Review_, _27_(5), 911-936.
