@@ -146,16 +146,16 @@ functions {
     // scale = lambda
     if (mu == positive_infinity()) {
       lprob = -0.5 * (
-        (lambda / x) - log(lambda) + log(2 * pi()) + 3 * log(x)
+        (lambda / x) - log(lambda) + log(2 * pi()) + lmultiply(3, x)
       );
       return lprob;
     }
 
     // if none of the above cases apply, then calculate the log probability of input x as planned
-    term1 = 0.5 * log(lambda / (2 * pi()));
+    term1 = lmultiply(0.5, lambda / (2 * pi()));
     term2 = square(x - mu) / (x * square(mu));
 
-    lprob = term1 - 1.5 * log(x) - 0.5 * lambda * term2;
+    lprob = term1 - lmultiply(1.5, x) - 0.5 * lambda * term2;
 
     return lprob;
       
@@ -352,7 +352,7 @@ functions {
     // if input value x is extremely large, use asymptotic expression given by Giner & Smyth (2016)
     // otherwise, use conventional calculation
     if (x_mu > 1e6 || x_phi_mu > 5e5) {
-      lccprob = (1 / phi_mu) - 0.5 * log(pi()) - log(2 * phi_mu) -
+      lccprob = (1 / phi_mu) - lmultiply(0.5, pi()) - log(2 * phi_mu) -
         1.5 * log1p(x_phi_mu) - x_phi_mu;
     } else {
       r = sqrt(x_mu * phi_mu);
@@ -362,7 +362,7 @@ functions {
       // https://github.com/stan-dev/math/issues/1985
       a = std_normal_lcdf(-((x_mu - 1) / r));
       b = 2 / phi_mu + std_normal_lcdf(-(x_mu + 1) / r);
-      lccprob = a + log1m_exp(b - a); // log1m_exp(b - a) == log1p(-exp(b - a))
+      lccprob = a + log1m_exp(b - a);
     }
 
     return lccprob;
